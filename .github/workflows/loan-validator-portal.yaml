@@ -1,0 +1,49 @@
+name: Build and Push Docker images to ECR
+
+on:
+  push:
+    branches:  ["production"]  # Trigger on push to the staging branch
+
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # Required for OIDC
+      contents: read   # Required to checkout the code
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::046651569857:role/github-aws.oidc  # IAM role ARN
+          aws-region: us-east-1  # AWS region
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build Docker image
+        run: |
+          docker build -t 046651569857.dkr.ecr.us-east-1.amazonaws.com/default/loan-validator-portal:1.0.0 .
+
+      - name: Tag Docker image
+        run: |
+          docker tag 046651569857.dkr.ecr.us-east-1.amazonaws.com/default/loan-validator-portal:1.0.0 046651569857.dkr.ecr.us-east-1.amazonaws.com/default/loan-validator-portal:1.0.0
+
+      - name: Run Trivy image scan
+        uses: aquasecurity/trivy-action@0.20.0
+        with:
+          image-ref: 046651569857.dkr.ecr.us-east-1.amazonaws.com/default/loan-validator-portal:1.0.0
+          scan-type: image
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          format: table
+          exit-code: 1
+
+      - name: Push Docker image to ECR
+        run: |
+          docker push 046651569857.dkr.ecr.us-east-1.amazonaws.com/default/loan-validator-portal:1.0.0
