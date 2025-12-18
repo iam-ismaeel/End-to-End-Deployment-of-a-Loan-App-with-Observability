@@ -28,7 +28,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t 046651569857.dkr.ecr.us-east-1.amazonaws.com/dafault/government-api:1.0.0 .
+          docker build -f government_api/backend/Dockerfile -t 046651569857.dkr.ecr.us-east-1.amazonaws.com/dafault/government-api:1.0.0 .
 
       - name: Tag Docker image
         run: |

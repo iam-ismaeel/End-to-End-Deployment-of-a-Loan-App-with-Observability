@@ -1,0 +1,45 @@
+#ServiceAccount
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: government-api-service-account
+  namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+---
+# Role
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: government-api-app-role
+  namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "pods/logs", "services"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["get", "list", "watch"]
+---
+# Role Binding
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: government-api-app-rolebinding
+  namespace: default
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+subjects:
+  - kind: ServiceAccount
+    name: government-api-service-account
+    namespace:  default
+roleRef:
+  kind: Role
+  name: government-api-app-role
+  apiGroup: rbac.authorization.k8s.io
+

@@ -28,7 +28,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t 046651569857.dkr.ecr.us-east-1.amazonaws.com/default/loan-validator-portal:1.0.0 .
+          docker build -f loan_validator_portal/backend/Dockerfile -t 046651569857.dkr.ecr.us-east-1.amazonaws.com/default/loan-validator-portal:1.0.0 .
 
       - name: Tag Docker image
         run: |
