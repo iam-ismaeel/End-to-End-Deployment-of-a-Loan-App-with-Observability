@@ -4,7 +4,7 @@ FROM golang:1.21-alpine AS builder
 WORKDIR /app
 
 # Copy everything including vendor directory
-COPY backend/ ./
+COPY government_api/backend/ ./
 
 # Build the application using vendored dependencies
 RUN CGO_ENABLED=0 GOOS=linux go build -mod=vendor -o government-api .
