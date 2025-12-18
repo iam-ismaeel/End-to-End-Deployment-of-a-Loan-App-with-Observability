@@ -19,7 +19,7 @@ WORKDIR /app/backend
 COPY --from=builder /app/loan-validator-portal .
 
 # Copy templates to /app/frontend/templates/ (relative path ../frontend/templates/* from /app/backend)
-COPY frontend/templates /app/frontend/templates/
+COPY loan_validator_portal/frontend/templates /app/frontend/templates/
 
 # Expose port
 EXPOSE 8080
