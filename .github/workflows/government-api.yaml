@@ -46,4 +46,4 @@ jobs:
 
       - name: Push Docker image to ECR
         run: |
-          docker push 5046651569857.dkr.ecr.us-east-1.amazonaws.com/dafault/government-api:1.0.0
+          docker push 046651569857.dkr.ecr.us-east-1.amazonaws.com/dafault/government-api:1.0.0
