@@ -7,9 +7,11 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    cert-manager_io/cluster-issuer: http-01-production    
 spec:
+  ingressClassName: external-nginx
   rules:
-  - host: daas.ng  # Replace with your actual domain
+  - host: demo.azanypay.com # Replace with your actual domain
     http:
       paths:
       # Loan Validator Portal (Frontend)
@@ -42,7 +44,7 @@ spec:
 ---
 # Add TLS section to Ingress spec above:
 # spec:
-#   tls:
-#   - hosts:
-#     - daas.ng
-#     secretName: tls-secret
+  tls:
+  - hosts:
+    - demo.azanypay.com
+    secretName: tls-secret

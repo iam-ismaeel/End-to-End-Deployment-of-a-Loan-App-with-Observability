@@ -22,7 +22,7 @@ spec:
       serviceAccountName: government-api-service-account
       containers:
       - name: government-api
-        image: daasnigeria/daasrepo:government-api
+        image: 046651569857.dkr.ecr.us-east-1.amazonaws.com/dafault/government-api:1.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8081

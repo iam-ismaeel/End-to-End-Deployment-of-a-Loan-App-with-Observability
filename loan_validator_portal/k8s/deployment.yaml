@@ -22,7 +22,7 @@ spec:
       serviceAccountName:  loan-validator-portal-service-account
       containers:
       - name: loan-validator-portal
-        image: daasnigeria/daasrepo:loan-validator-portal
+        image: 046651569857.dkr.ecr.us-east-1.amazonaws.com/default/loan-validator-portal:1.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
