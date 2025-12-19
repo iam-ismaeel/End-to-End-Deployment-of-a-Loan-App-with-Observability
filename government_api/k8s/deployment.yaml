@@ -15,10 +15,10 @@ spec:
       labels:
         app: government-api
     spec:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        fsGroup: 2000
+     # securityContext:
+      #  runAsNonRoot: true
+       # runAsUser: 1000
+        #fsGroup: 2000
       serviceAccountName: government-api-service-account
       containers:
       - name: government-api
@@ -28,11 +28,11 @@ spec:
         - containerPort: 8081
           name: http
         securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-              - ALL
-          readOnlyRootFilesystem: true
+          allowPrivilegeEscalation: true
+         # capabilities:
+          #  drop:
+           #   - ALL
+          #readOnlyRootFilesystem: true
         envFrom:
         - configMapRef:
             name: government-api-config

@@ -47,3 +47,7 @@ variable "enable_irsa" {
   type        = bool
   default     = true
 }
+
+variable "ami_type" {
+  description = "ami type of the created instance"
+}

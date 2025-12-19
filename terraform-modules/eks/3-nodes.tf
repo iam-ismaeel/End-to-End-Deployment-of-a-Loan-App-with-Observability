@@ -9,7 +9,8 @@ resource "aws_eks_node_group" "this" {
 
   capacity_type  = each.value.capacity_type
   instance_types = each.value.instance_types
-
+  ami_type = var.ami_type
+  
   scaling_config {
     desired_size = each.value.scaling_config.desired_size
     max_size     = each.value.scaling_config.max_size
