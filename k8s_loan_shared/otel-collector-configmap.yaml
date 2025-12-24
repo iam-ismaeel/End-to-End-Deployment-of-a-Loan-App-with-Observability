@@ -28,16 +28,18 @@ data:
             value: "production"
             action: upsert
           - key: k8s.cluster.name
-            value: "daas-k8s-cluster"
+            value: "prod-azany-prod"
             action: upsert
 
     exporters:
       datadog/exporter:
         api:
-          site: "us1.datadoghq.com"
+          site: "datadoghq.com"
           key: ${DD_API_KEY}
         traces:
           span_name_as_resource_name: true
+        logs:
+          endpoint: "https://http-intake.logs.datadoghq.com"
       
       debug:
         verbosity: detailed
@@ -48,6 +50,10 @@ data:
       extensions: [health_check]
       pipelines:
         traces:
+          receivers: [otlp]
+          processors: [batch, resource]
+          exporters: [datadog/exporter, debug]
+        logs:
           receivers: [otlp]
           processors: [batch, resource]
           exporters: [datadog/exporter, debug]
