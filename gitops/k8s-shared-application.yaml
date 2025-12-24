@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-app
+  name: progrSQL-DB-&-OTEL
   namespace: argocd
 spec:
   project: default
@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/iam-ismaeel/End-to-End-Deployment-of-a-Loan-App-with-Observability.git
     targetRevision: main
-    path: /k8s_loan_shared
+    path: k8s_loan_shared
 
   destination:
     server: 'https://kubernetes.default.svc'

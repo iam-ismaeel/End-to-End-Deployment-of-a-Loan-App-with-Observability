@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-app
+  name: loan-validator-portal
   namespace: argocd
 spec:
   project: default
@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/iam-ismaeel/End-to-End-Deployment-of-a-Loan-App-with-Observability.git
     targetRevision: main
-    path: /loan_validator_portal/k8s
+    path: loan_validator_portal/k8s
 
   destination:
     server: 'https://kubernetes.default.svc'
