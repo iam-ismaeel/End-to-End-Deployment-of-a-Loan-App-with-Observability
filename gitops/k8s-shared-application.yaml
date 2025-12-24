@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: progrSQL-DB-&-OTEL
+  name: progresql-db-and-otel
   namespace: argocd
 spec:
   project: default
