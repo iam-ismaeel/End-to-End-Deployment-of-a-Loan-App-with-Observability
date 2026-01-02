@@ -7,15 +7,14 @@ A comprehensive government loan validation system built with modern cloud-native
 ## 🏗️ Architecture Diagram
 ![High-Level Architecture](./assets/architecture-diagrams/high-level-architecture-diagram.png)
 
+
 ### CI/CD Pipeline Flow
-```mermaid
-graph TD
     A[Code Push] --> B[GitHub Actions]
     B --> C[Build & Test]
     C --> D[Security Scan]
     D --> E[Push to ECR]
     E --> F[ArgoCD Sync]
----
+
 
 ## 🎯 Core Features
 
